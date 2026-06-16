@@ -1,12 +1,13 @@
 import { createRequire } from 'module';
 globalThis.require = createRequire(import.meta.url);
 
+import qrcode from 'qrcode-terminal'
 import Pino from 'pino'
 import fs from 'fs'
 import path from 'path'
 import express from 'express'
 import { Boom } from '@hapi/boom'
-import { fileURLToPath } from 'url'
+import { fileURLToPath, pathToFileURL } from 'url'
 import moment from 'moment-timezone'
 import { loadSudoList } from './utils/sudoStore.js'
 import CONFIG from './config.js'
@@ -199,7 +200,7 @@ const commands = new Map()
 const commandAliases = new Map()
 
 for (const file of fs.readdirSync(commandsDir).filter(f => f.endsWith('.js'))) {
-  const mod = await import(path.join(commandsDir, file))
+  const mod = await import(pathToFileURL(path.join(commandsDir, file)).href)
   if (!mod.commands) continue
   for (const c of mod.commands) {
     commands.set(c.name.toLowerCase(), c)
@@ -377,11 +378,15 @@ async function start() {
       auth: state,
       logger: Pino({ level: 'silent' }),
       browser: ['Flash-MD', 'Chrome', '3.0.0'],
-      printQRInTerminal: false,
+      printQRInTerminal: true,
       markOnlineOnConnect: false
     })
     sock.ev.on('creds.update', saveCreds)
     sock.ev.on('connection.update', ({ connection, lastDisconnect, qr }) => {
+	if (qr) {
+  console.log('Scan this QR with WhatsApp:')
+  qrcode.generate(qr, { small: true })
+}
       if (connection === 'close') {
         const r = new Boom(lastDisconnect?.error)?.output?.statusCode
         let reason = 'Unknown'
