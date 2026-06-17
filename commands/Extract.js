@@ -20,7 +20,14 @@ export const commands = [
               return;
           }
       } else if (!from.endsWith('@g.us')) {
-        await sock.sendMessage(from, { text: '⚠️ You must provide a group number (e.g., .extract 1) when extracting from a private chat!' }, { quoted: msg });
+        const groups = await sock.groupFetchAllParticipating();
+        const allGroups = Object.values(groups);
+        let groupListMsg = '📝 *Your Groups List:*\n\n';
+        allGroups.forEach((g, index) => {
+          groupListMsg += `${index + 1}. ${g.subject}\n`;
+        });
+        groupListMsg += '\n👉 *To extract, reply with:* `.extract <number>`\nExample: `.extract 1`';
+        await sock.sendMessage(from, { text: groupListMsg }, { quoted: msg });
         return;
       }
 
