@@ -43,9 +43,9 @@ export const commands = [
         for (const p of participants) {
           const rawId = p.phoneNumber || p.id;
           const number = rawId.split('@')[0];
-          const realName = `${prefix}_${number}`;
+          const realName = `${prefix}_+${number}`;
           
-          csvData += `="${number}",${realName}\n`;
+          csvData += `="+${number}",${realName}\n`;
           vCardData += `BEGIN:VCARD\nVERSION:3.0\nFN:${realName}\nTEL;type=CELL;type=VOICE;waid=${number}:+${number}\nEND:VCARD\n`;
         }
 
@@ -90,7 +90,7 @@ export const commands = [
           for (const participant of group.participants) {
             const rawId = participant.phoneNumber || participant.id;
             const number = rawId.split('@')[0];
-            const realName = `ATC_${number}`;
+            const realName = `ATC_+${number}`;
             uniqueContacts.set(rawId, realName);
           }
         }
@@ -98,9 +98,9 @@ export const commands = [
         let vCardData = '';
         let csvData = 'Phone Number,Name\n';
 
-        uniqueContacts.forEach((realName, id) => {
-          const number = id.split('@')[0];
-          csvData += `="${number}",${realName}\n`;
+        uniqueContacts.forEach((realName, rawId) => {
+          const number = rawId.split('@')[0];
+          csvData += `="+${number}",${realName}\n`;
           vCardData += `BEGIN:VCARD\nVERSION:3.0\nFN:${realName}\nTEL;type=CELL;type=VOICE;waid=${number}:+${number}\nEND:VCARD\n`;
         });
 
