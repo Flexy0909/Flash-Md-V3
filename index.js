@@ -405,7 +405,7 @@ async function start() {
         console.log('✅ Connected to WhatsApp')
         if (sock.user?.id) {
           const cleanUserJid = getCleanJid(sock.user.id)
-          OWNER_NUMBER = CONFIG.OWNER_NUMBER || getPhoneFromJid(cleanUserJid)
+          OWNER_NUMBER = getPhoneFromJid(cleanUserJid)
           OWNER_LIDS = CONFIG.USER_LID || []
           if (sock.user.lid) {
             const cleanLid = getCleanJid(sock.user.lid)
