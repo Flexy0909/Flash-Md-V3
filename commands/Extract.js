@@ -49,8 +49,7 @@ export const commands = [
           vCardData += `BEGIN:VCARD\nVERSION:3.0\nFN:${realName}\nTEL;type=CELL;type=VOICE;waid=${number}:+${number}\nEND:VCARD\n`;
         }
 
-        const safeGroupName = (groupMeta.subject || 'Group').replace(/[^a-zA-Z0-9]/g, '_').substring(0, 25);
-        
+
         await sock.sendMessage(from, {
           document: Buffer.from(csvData, 'utf-8'),
           mimetype: 'text/csv',
