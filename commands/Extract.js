@@ -37,6 +37,7 @@ export const commands = [
         const participants = groupMeta.participants;
         
         let vCardData = '';
+        let csvData = 'Phone Number,Name\n';
         const safeGroupName = (groupMeta.subject || 'Group').replace(/[^a-zA-Z0-9]/g, '');
         const prefix = safeGroupName.substring(0, 6).toUpperCase();
 
