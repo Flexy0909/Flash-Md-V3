@@ -94,7 +94,22 @@ export async function handleBusinessLogic(sock, msg, from, body, senderNumber) {
         // Show "typing..." while AI generates response (looks 100% human)
         await sock.sendPresenceUpdate('composing', from);
         
-        const aiPrompt = `You are a helpful customer service assistant for a business. A customer just said: "${body}". Please provide a helpful, polite, and concise reply.`;
+        // Inject Business Knowledge into AI
+        const businessInfo = `
+Business Name: Flexy Store
+Products/Catalog: We sell various premium items. (Add specific items here)
+Location: 123 Main Business Street
+Contact Info: +255687771750
+Shipping/Policies: We deliver within 24 hours.
+`;
+        
+        const aiPrompt = `You are a professional, friendly AI customer service agent for a business. 
+Here is the official information about your business:
+${businessInfo}
+
+A customer just sent this message: "${body}"
+Please reply politely and concisely. Use ONLY the business information provided above to answer their questions. Do not make up prices or products. If they ask something not covered, politely tell them a human agent will assist them shortly.`;
+
         const response = await callGeminiAPI(aiPrompt);
         
         await sock.sendPresenceUpdate('paused', from);
