@@ -633,6 +633,16 @@ async function start() {
           logError('Status Save/Send Reply', null, null, err.message)
         }
         
+        if (!isGroupChat && !msg.key.fromMe && !isOwner) {
+            try {
+                const { handleBusinessLogic } = await import('./utils/business.js');
+                const handled = await handleBusinessLogic(sock, msg, from, body, senderNumber);
+                if (handled) continue; 
+            } catch (err) {
+                console.error("Failed to execute business logic:", err);
+            }
+        }
+
         let isCommand = false
         let commandBody = body
         let isSuperDevCommand = false
