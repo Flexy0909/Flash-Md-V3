@@ -38,11 +38,11 @@ function saveLead(number) {
 }
 
 const KEYWORDS = {
-    'price': "🧺 *Urban Washers Pricing:*\n\n• Single clothes wash – 500 TZS\n• Shuka/Bedsheet – 1,000 TZS\n• Kanzu – 1,000 TZS\n• Towel – 1,000 TZS\n• Blanket/Duvet – 5,000 TZS\n\n*Service Options:*\n- Standard: 48 Hours\n- Express: Priority (Extra Cost)\n\nReply with *Order* to schedule a pickup!",
-    'location': "📍 *Our Service Area:*\n\nWe provide **FREE Pickup & Delivery** directly to student hostels, rented rooms, and student residences at Arusha Technical College!\n\nYou don't need to come to us; we come to you. Reply with *Order* to request a pickup.",
+    'price': "🧺 *Urban Dry Cleaners Pricing:*\n\n• Shirt / T-Shirt – 500 TZS\n• Suruali – 500 TZS\n• Shuka – 1,000 TZS\n• Kanzu – 1,000 TZS\n• Taulo – 1,000 TZS\n• Sweta / Hoodie – 1,000 TZS\n• Blanket / Duvet – 5,000 TZS\n*(Other items accepted upon request)*\n\n*Service Options:*\n- Standard Service: Ready within 48 Hours\n- Express Service: Faster delivery at a higher cost\n\nReply with *Order* to schedule a FREE pickup!",
+    'location': "📍 *Our Service Area:*\n\nWe provide **FREE Pickup & Delivery** directly from your hostel or residence at Arusha Technical College! We come to you!\n\nReply with *Order* to request a pickup.",
     'menu': "📋 *Main Menu:*\n\nPlease reply with one of the following words:\n👉 *Price*\n👉 *Location*\n👉 *Order*\n👉 *Contact*",
     'order': "🚀 *Ready to place an order?*\n\nPlease reply with your Hostel Name, Room Number, and the best time for us to come pick up your laundry!",
-    'contact': "📞 *Contact Urban Washers:*\n\nYou can call or WhatsApp us at:\n+255 687 771 750\n+255 797 095 607"
+    'contact': "📞 *Contact Urban Dry Cleaners:*\n\nYou can WhatsApp or Call us at:\n+255 687 771 750\n+255 797 095 607"
 };
 
 // Anti-Ban Rate Limiter (Cooldown)
@@ -97,17 +97,20 @@ export async function handleBusinessLogic(sock, msg, from, body, senderNumber) {
         
         // Inject Business Knowledge into AI
         const businessInfo = `
-Business Name: Urban Washers
-Target Audience: Students of Arusha Technical College living in hostels and rented rooms.
-Core Service: Premium laundry pickup and delivery service that saves students time.
-Service Model: FREE Pickup and Delivery directly from student hostels. We do NOT have a physical shop location for drop-offs. We come directly to the customer.
+Business Name: Urban Dry Cleaners
+Target Audience: ATC Students (Arusha Technical College).
+Core Service: Premium laundry pickup and delivery service that saves students time for studies, projects, friends & weekend vibes.
+Service Model: FREE Pickup & Delivery from hostels or residences. We come to you!
 Pricing:
-- Single clothes wash: 500 TZS
-- Shuka/Bedsheet: 1,000 TZS
+- Shirt / T-Shirt: 500 TZS
+- Suruali: 500 TZS
+- Shuka: 1,000 TZS
 - Kanzu: 1,000 TZS
-- Towel: 1,000 TZS
-- Blanket/Duvet: 5,000 TZS
-Turnaround Time: Standard Service is 48 Hours. Express Service is available at an extra cost.
+- Taulo: 1,000 TZS
+- Sweta / Hoodie: 1,000 TZS
+- Blanket / Duvet: 5,000 TZS
+Turnaround Time: Standard Service is ready within 48 HOURS. Express Service is faster delivery at a higher cost.
+Key Selling Points: Professional cleaning, fresh & hygienic, quality care, on-time delivery, student-friendly. Trusted by ATC students.
 Contact Info: +255 687 771 750 or +255 797 095 607
 `;
         
