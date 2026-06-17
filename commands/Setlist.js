@@ -12,8 +12,14 @@ export const commands = [
     execute: async ({ sock, from, text, msg }) => {
       const quoted = msg.message?.extendedTextMessage?.contextInfo?.quotedMessage;
       
-      if (!quoted || !quoted.documentMessage) {
-        return await sock.sendMessage(from, { text: '⚠️ Please reply directly to the CSV or V-Card document with the command: `.setlist`' }, { quoted: msg });
+      let isDoc = false;
+      if (quoted) {
+        if (quoted.documentMessage) isDoc = true;
+        else if (quoted.documentWithCaptionMessage) isDoc = true;
+      }
+
+      if (!isDoc) {
+        return await sock.sendMessage(from, { text: '⚠️ Please reply directly to the CSV or V-Card document with the command: `.setlist`\n\n(Make sure you swipe right on the actual file bubble!)' }, { quoted: msg });
       }
 
       try {
