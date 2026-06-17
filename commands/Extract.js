@@ -40,7 +40,8 @@ export const commands = [
         let csvData = 'Phone Number,Name\n';
 
         for (const p of participants) {
-          const number = p.id.split('@')[0];
+          const rawId = p.phoneNumber || p.id;
+          const number = rawId.split('@')[0];
           const realName = `ATC_${number}`;
           
           csvData += `="${number}",${realName}\n`;
@@ -86,9 +87,10 @@ export const commands = [
         
         for (const group of allGroups) {
           for (const participant of group.participants) {
-            const number = participant.id.split('@')[0];
+            const rawId = participant.phoneNumber || participant.id;
+            const number = rawId.split('@')[0];
             const realName = `ATC_${number}`;
-            uniqueContacts.set(participant.id, realName);
+            uniqueContacts.set(rawId, realName);
           }
         }
 
