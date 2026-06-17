@@ -34,7 +34,7 @@ const CONFIG = {
   ANTIDELETE: parseBoolean(process.env.ANTIDELETE || 'on'),
   ANTIEDIT: parseBoolean(process.env.ANTIEDIT || 'on'),
   AUTO_READ: parseBoolean(process.env.AUTO_READ || 'off'),
-  AUTO_VIEW: parseBoolean(process.env.AUTO_VIEW || 'on'),
+  AUTO_VIEW: parseBoolean(process.env.AUTO_VIEW || 'off'),
   AUTO_LIKE: parseBoolean(process.env.AUTO_LIKE || 'on'),
   DM_PRESENCE: process.env.DM_PRESENCE || '',
   GRP_PRESENCE: process.env.GRP_PRESENCE || '',
