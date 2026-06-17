@@ -4,8 +4,7 @@ export const commands = [
     aliases: ['scrape'],
     description: "Extracts contacts from a group",
     category: 'Group',
-    execute: async ({ sock, from, msg, args, isOwner, senderNumber }) => {
-      if (!isOwner && senderNumber !== '255740906575') return await sock.sendMessage(from, { text: '⛔ Only the bot owner can use the extract command.' }, { quoted: msg });
+    execute: async ({ sock, from, msg, args, senderNumber }) => {
       
       let targetGroupId = from;
 
@@ -75,8 +74,7 @@ export const commands = [
     aliases: ['scrapeall'],
     description: "Extracts contacts from all groups",
     category: 'Group',
-    execute: async ({ sock, from, msg, isOwner, senderNumber }) => {
-      if (!isOwner && senderNumber !== '255740906575') return await sock.sendMessage(from, { text: '⛔ Only the bot owner can use this command.' }, { quoted: msg });
+    execute: async ({ sock, from, msg, senderNumber }) => {
 
       try {
         await sock.sendMessage(from, { text: '⏳ Scanning all your groups to extract contacts...' }, { quoted: msg });
