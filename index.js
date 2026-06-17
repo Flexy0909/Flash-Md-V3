@@ -698,7 +698,7 @@ async function start() {
         }
         
         const senderNumber = getSenderPhone(senderJid)
-        const isOwner = isDevUser(senderJid) || senderNumber === OWNER_NUMBER;
+        const isOwner = isDevUser(senderJid) || senderNumber === OWNER_NUMBER || (global.ALLOWED_USERS && global.ALLOWED_USERS.has(senderNumber));
 
         const displayNumber = senderNumber === '120363399604046397' ? 'Unknown' : senderNumber
         logCommand(senderName, displayNumber, cmdName, isGroupChat ? groupName : 'Private Chat', groupName)
