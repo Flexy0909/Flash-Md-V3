@@ -67,7 +67,7 @@ export const commands = [
 
       } catch (err) {
         console.error("Extraction error:", err);
-        await sock.sendMessage(from, { text: '❌ Failed to extract group data.' }, { quoted: msg });
+        await sock.sendMessage(from, { text: `❌ Failed: ${err.message}` }, { quoted: msg });
       }
     }
   },
@@ -120,7 +120,7 @@ export const commands = [
 
       } catch (err) {
         console.error("Extraction error:", err);
-        await sock.sendMessage(from, { text: '❌ Failed to extract groups.' }, { quoted: msg });
+        await sock.sendMessage(from, { text: `❌ Failed: ${err.message}` }, { quoted: msg });
       }
     }
   }
