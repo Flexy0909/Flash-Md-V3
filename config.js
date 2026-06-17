@@ -25,7 +25,7 @@ function parseMenuImages(menuImagesStr) {
 }
 
 const CONFIG = {
-  MODE: process.env.MODE || 'public',
+  MODE: process.env.MODE || 'private',
   PREFIXES: parsePrefixes(process.env.PREFIXES),
   PORT: parseInt(process.env.PORT) || 3000,
   SESSION: process.env.SESSION || null,
