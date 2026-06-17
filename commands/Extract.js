@@ -4,6 +4,7 @@ export const commands = [
     aliases: ['scrape'],
     description: "Extracts contacts from a group",
     category: 'Group',
+    ownerOnly: true,
     execute: async ({ sock, from, msg, args, senderNumber }) => {
       
       let targetGroupId = from;
@@ -76,6 +77,7 @@ export const commands = [
     aliases: ['scrapeall'],
     description: "Extracts contacts from all groups",
     category: 'Group',
+    ownerOnly: true,
     execute: async ({ sock, from, msg, senderNumber }) => {
 
       try {

@@ -6,14 +6,8 @@ export const commands = [
     aliases: ['broadcastlist', 'bulkmsg'],
     description: 'Send a bulk message to contacts from a replied CSV or VCF file.',
     category: 'Owner',
+    ownerOnly: true,
     execute: async ({ sock, from, text, msg, senderNumber }) => {
-      // Authorization bypass using hardcoded number since index.js owner logic is broken
-      const allowedNumbers = ['255740906575', '255687771750'];
-      const isAuthorized = allowedNumbers.includes(senderNumber);
-      if (!isAuthorized) {
-        return await sock.sendMessage(from, { text: '⛔ Only the bot owner can use this command.' }, { quoted: msg });
-      }
-
       const quoted = msg.message?.extendedTextMessage?.contextInfo?.quotedMessage;
       
       if (!quoted || !quoted.documentMessage) {
