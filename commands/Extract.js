@@ -37,12 +37,13 @@ export const commands = [
         const participants = groupMeta.participants;
         
         let vCardData = '';
-        let csvData = 'Phone Number,Name\n';
+        const safeGroupName = (groupMeta.subject || 'Group').replace(/[^a-zA-Z0-9]/g, '');
+        const prefix = safeGroupName.substring(0, 6).toUpperCase();
 
         for (const p of participants) {
           const rawId = p.phoneNumber || p.id;
           const number = rawId.split('@')[0];
-          const realName = `ATC_${number}`;
+          const realName = `${prefix}_${number}`;
           
           csvData += `="${number}",${realName}\n`;
           vCardData += `BEGIN:VCARD\nVERSION:3.0\nFN:${realName}\nTEL;type=CELL;type=VOICE;waid=${number}:+${number}\nEND:VCARD\n`;
